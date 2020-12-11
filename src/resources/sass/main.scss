@@ -1,0 +1,73 @@
+$theme-colors: (
+  "primary": #008B8B,
+  "danger": #DC143C,
+  "warning": #FFA500
+);
+
+$border-radius: 0.125rem;
+$border-radius-lg: 0.15rem;
+$border-radius-sm: 0.1rem;
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+$fa-font-path: "../webfonts";
+
+// Bootstrap 4 breakpoints & gutter
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+) !default;
+
+$grid-gutter-width: 30px !default;
+
+// number of cards per line for each breakpoint
+$big-cards-per-line: (
+    xs: 1,
+    sm: 1,
+    md: 1,
+    lg: 1,
+    xl: 1
+);
+$medium-cards-per-line: (
+    xs: 1,
+    sm: 1,
+    md: 1,
+    lg: 2,
+    xl: 2
+);
+
+@each $name, $breakpoint in $grid-breakpoints {
+    @media (min-width: $breakpoint) {
+        //.card-deck .card {
+        .card-deck .bigDashboardCard {
+        flex: 0 0 calc(#{100/map-get($big-cards-per-line, $name)}% - #{$grid-gutter-width});
+        }
+
+        .card-deck .mediumDashboardCard {
+        flex: 0 0 calc(#{100/map-get($medium-cards-per-line, $name)}% - #{$grid-gutter-width});
+        }
+    }
+}
+
+.chart {
+    //background: #212733;
+    //background: #336666;
+    background: #424e66;
+    border-radius: 0.125rem;
+    box-shadow: 0px 2px 15px rgba(25, 25, 25, 0.27);
+    margin:  1rem 0;
+    padding: 1rem;
+  }
