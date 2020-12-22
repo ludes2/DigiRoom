@@ -75,7 +75,7 @@ class DeviceController extends Controller
         exec("ping -c 1 192.168.1.132", $output, $status);
         return view('devices.show', [
         'device'        => $device,
-        'sensors'       => json_decode(ApiController::getSensors()),
+        'sensors'       => json_decode(ApiController::getSensors($device)),
         'status'        => $status
         ]);
     }

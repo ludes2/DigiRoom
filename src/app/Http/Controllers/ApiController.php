@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Room;
+use App\Device;
 
 class ApiController extends Controller
 {
@@ -18,25 +19,29 @@ class ApiController extends Controller
 
     public static function getTemperaturesFromThisWeek(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/temperaturesFromThisWeek');
+        //$response = Http::get($room->device->ip.':8080/temperaturesFromThisWeek');
+        $response = Http::get($room->device->alias.'/temperaturesFromThisWeek');
         return $response->body();
     }
 
     public static function getTemperaturesFromThisMonth(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/temperaturesFromThisMonth');
+        //$response = Http::get($room->device->ip.':8080/temperaturesFromThisMonth');
+        $response = Http::get($room->device->alias.'/temperaturesFromThisMonth');
         return $response->body();
     }
 
     public static function getTemperaturesFromThisYear(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/temperaturesFromThisYear');
+        //$response = Http::get($room->device->ip.':8080/temperaturesFromThisYear');
+        $response = Http::get($room->device->alias.'/temperaturesFromThisYear');
         return $response->body();
     }
 
     public static function getLatestTemperature(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/temperatures/latest');
+        //$response = Http::get($room->device->ip.':8080/temperatures/latest');
+        $response = Http::get($room->device->alias.'/temperatures/latest');
         return $response->body();
     }
 
@@ -48,31 +53,36 @@ class ApiController extends Controller
 
     public static function getHumiditiesFromThisWeek(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/humiditiesFromThisWeek');
+        //$response = Http::get($room->device->ip.':8080/humiditiesFromThisWeek');
+        $response = Http::get($room->device->alias.'/humiditiesFromThisWeek');
         return $response->body();
     }
 
     public static function getHumiditiesFromThisMonth(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/humiditiesFromThisMonth');
+        //$response = Http::get($room->device->ip.':8080/humiditiesFromThisMonth');
+        $response = Http::get($room->device->alias.'/humiditiesFromThisMonth');
         return $response->body();
     }
 
     public static function getHumiditiesFromThisYear(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/humiditiesFromThisYear');
+        //$response = Http::get($room->device->ip.':8080/humiditiesFromThisYear');
+        $response = Http::get($room->device->alias.'/humiditiesFromThisYear');
         return $response->body();
     }
 
     public static function getLatestHumidity(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/humidities/latest');
+        //$response = Http::get($room->device->ip.':8080/humidities/latest');
+        $response = Http::get($room->device->alias.'/humidities/latest');
         return $response->body();
     }
 
-    public static function getSensors()
+    public static function getSensors(Device $device)
     {
-        $response = Http::get('192.168.1.132:8080/sensors');
+        //$response = Http::get($device->ip.':8080/sensors');
+        $response = Http::get($device->alias.'/sensors');
         return $response->body();
     }
 
@@ -84,25 +94,29 @@ class ApiController extends Controller
 
     public static function getLuxFromThisWeek(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/luxFromThisWeek');
+        //$response = Http::get($room->device->ip.':8080/luxFromThisWeek');
+        $response = Http::get($room->device->alias.'/luxFromThisWeek');
         return $response->body();
     }
 
     public static function getLuxFromThisMonth(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/luxFromThisMonth');
+        //$response = Http::get($room->device->ip.':8080/luxFromThisMonth');
+        $response = Http::get($room->device->alias.'/luxFromThisMonth');
         return $response->body();
     }
 
     public static function getLuxFromThisYear(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/luxFromThisYear');
+        //$response = Http::get($room->device->ip.':8080/luxFromThisYear');
+        $response = Http::get($room->device->alias.'/luxFromThisYear');
         return $response->body();
     }
 
     public static function getPresencesHours(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/presences');
+        //$response = Http::get($room->device->ip.':8080/presences');
+        $response = Http::get($room->device->alias.'/presences');
         $presences = $response->body();
         $times = self::hours_of_day();
         foreach ( $times as $key => $value ) {
@@ -118,7 +132,8 @@ class ApiController extends Controller
 
     public static function getPresencesDays(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/presences');
+        //$response = Http::get($room->device->ip.':8080/presences');
+        $response = Http::get($room->device->alias.'/presences');
         $presences = $response->body();
         $weekdays = self::days_of_week();
         $result = array_combine(array_values($weekdays), array_fill(0, count($weekdays), 0));
@@ -132,7 +147,8 @@ class ApiController extends Controller
 
     public static function getPresencesMonths(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/presences');
+        //$response = Http::get($room->device->ip.':8080/presences');
+        $response = Http::get($room->device->alias.'/presences');
         $presences = $response->body();
         $months = self::months_of_year();
         $result = array_combine(array_values($months), array_fill(0, count($months), 0));
@@ -146,7 +162,8 @@ class ApiController extends Controller
 
     public static function getStatesHours(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/states');
+        //$response = Http::get($room->device->ip.':8080/states');
+        $response = Http::get($room->device->alias.'/states');
         $states = $response->body();
         $times = self::hours_of_day();
         foreach ( $times as $key => $value ) {
@@ -162,7 +179,8 @@ class ApiController extends Controller
 
     public static function getStatesDays(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/states');
+        //$response = Http::get($room->device->ip.':8080/states');
+        $response = Http::get($room->device->alias.'/states');
         $states = $response->body();
         $weekdays = self::days_of_week();
         $result = array_combine(array_values($weekdays), array_fill(0, count($weekdays), 0));
@@ -176,7 +194,8 @@ class ApiController extends Controller
 
     public static function getStatesMonths(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/states');
+        //$response = Http::get($room->device->ip.':8080/states');
+        $response = Http::get($room->device->alias.'/states');
         $states = $response->body();
         $months = self::months_of_year();
         $result = array_combine(array_values($months), array_fill(0, count($months), 0));
@@ -190,7 +209,8 @@ class ApiController extends Controller
 
     public static function getLatestState(Room $room)
     {
-        $response = Http::get($room->device->ip.':8080/states/latest');
+        //$response = Http::get($room->device->ip.':8080/states/latest');
+        $response = Http::get($room->device->alias.'/states/latest');
         return $response->body();
     }
 
@@ -283,7 +303,8 @@ class ApiController extends Controller
     {
         $ghostMeetings = 0;
         $events = $room->events;
-        $response = Http::get($room->device->ip.':8080/presences');
+        //$response = Http::get($room->device->ip.':8080/presences');
+        $response = Http::get($room->device->alias.'/presences');
         $presences = json_decode($response->body());
         foreach( $events as $event ){
             foreach( $presences as $presence ){
