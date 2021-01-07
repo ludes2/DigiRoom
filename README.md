@@ -1,4 +1,4 @@
-# docker-compose-laravel
+# DigiRoom
 This project consists of Docker containers for local Laravel development. A LEMP network of containers with the DigiRoom application in a src folder is set up by following the instructions below.
 You can view the full article that inspired this repo [here](https://dev.to/aschmelyun/the-beauty-of-docker-for-local-laravel-development-13c0).
 
