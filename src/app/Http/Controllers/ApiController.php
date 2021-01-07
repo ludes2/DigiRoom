@@ -310,6 +310,7 @@ class ApiController extends Controller
             foreach( $presences as $presence ){
                 if( (strtotime($presence->created_at) >= strtotime($event->start)) && (strtotime($presence->created_at) <= strtotime($event->end)) ){
                     $ghostMeetings++;
+                    break;
                 }
             }
         }

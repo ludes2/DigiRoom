@@ -12,10 +12,10 @@
                 </div>
             @endif
             <div class="row mb-3">
-                <div class="col-md-10">
+                <div class="col-6">
                     <h3>Buildings</h3>
                 </div>
-                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                <div class="col-6 d-flex align-items-center justify-content-end">
                     <a href="{{ route('buildings.create') }}" role="button" class="btn btn-primary" title="Add new Building"><i class="fas fa-plus"></i>&nbspAdd Building</a>
                 </div>
             </div>

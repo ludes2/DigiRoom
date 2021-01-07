@@ -5,15 +5,15 @@
     <div class="card bg-light border-0">
         <div class="card-body">
             @if (session('status'))
-                <div class="alert alert-success" role="alert">
+                <div class="alert alert-success alert-dismissible" role="alert">
                     {{ session('status') }}
                 </div>
             @endif
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-6">
                     <h1>Users</h1>
                 </div>
-                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                <div class="col-6 d-flex align-items-center justify-content-end">
                     <a href="{{ route('users.create') }}" role="button" class="btn btn-primary" title="Create new User"><i class="fas fa-plus"></i>&nbspAdd User</a>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                             <td>{{ $user->lastname }}</td>
                             <td>{{ $user->email }}</td>
                             <td class="d-flex justify-content-around">
-                                <a href="" class="" title="Edit User"><i class="fas fa-lg fa-edit"></i></a>
+                                <a href="{{ route('users.edit', $user) }}" class="" title="Edit User"><i class="fas fa-lg fa-edit"></i></a>
                                 <a href="" class="" data-id="{{ $user->id }}" title="Delete User" data-toggle="modal" data-target="#deleteUserModal"><i class="fas fa-lg fa-trash"></i></a>
                             </td>
                         </tr>
@@ -54,14 +54,12 @@
 
 @section('scripts')
 <script>
-    $( document ).ready(function() {
-        $('#deleteUserModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var id = button.data('id') // Extract info from data-* attributes
-            var url = '{{ route("users.destroy", ":id") }}';
-            url = url.replace(':id', id);
-            $('#deleteUserForm').attr('action', url);
-        })
-    });
+    $('#deleteUserModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var url = '{{ route("users.destroy", ":id") }}';
+        url = url.replace(':id', id);
+        $('#deleteUserForm').attr('action', url);
+    })
 </script>
 @endsection

@@ -51,7 +51,6 @@ export default {
     async fetchDataFromThisWeek(){
       await axios.get('/api/temperaturesFromThisWeek/' + this.room.id)
       .then(response => {
-          console.log(response);
           this.chartData = response.data.map(elem => elem.value);
           this.chartLabels = response.data.map(elem => elem.created_at);
           this.average = this.calculateAverage(this.chartData);

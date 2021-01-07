@@ -23,14 +23,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $viewData = $this->loadViewData();
-        return view('home', $viewData);
+        //$viewData = $this->loadViewData();
+        return view('home');
     }
 
     public function welcome()
     {
-        $viewData = $this->loadViewData();
-        return view('welcome', $viewData);
+        //$viewData = $this->loadViewData();
+        return view('welcome');
     }
 
 

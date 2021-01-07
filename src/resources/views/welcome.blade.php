@@ -9,7 +9,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-12 text-center">
                             <h1 class="display-1 card-title">{{ config('app.name', 'mySuperSmartHome') }}</h1>
-                            <h3 class="card-subtitle">this website is a private project and access is only granted to authorized users. </h3>
+                            <!--<h3 class="card-subtitle">this website is a private project and access is only granted to authorized users. </h3>-->
                         </div>
                     </div>                    
                 </div>

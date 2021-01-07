@@ -25,8 +25,11 @@
         <main class="container-fluid">
             <div class="row">
                 <div class="col-md-2 border-right">
+                    @auth
                     @include('layouts.components.side_nav')
+                     @endauth
                 </div>
+           
                 <div class="col-md-8">
                     @yield('content')
                 </div>
@@ -43,22 +46,8 @@
     <script src="{{ asset('js/app.js') }}"></script>
     
     @yield('scripts')
-
     <script src="{{ asset('js/datetimepicker-2.5.20/jquery.js') }}" ></script>
     <script src="{{ asset('js/datetimepicker-2.5.20/build/jquery.datetimepicker.full.min.js') }}" ></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
 </body>
-<script>
-$(document).ready(function(){
-    $('.date').datetimepicker({
-        datepicker: true,
-        timepicker: true,
-        format: 'd.m.Y H:i',
-        step: 15
-    }).after('<div class="input-group-append datetimepicker"><span class="input-group-text"><i class="fas fa-calendar"></i></span></div>');
-
-    $('span.input-group-text').each(function(){
-        $( this ).addClass('text-primary');
-    });
-});
-</script>
 </html>

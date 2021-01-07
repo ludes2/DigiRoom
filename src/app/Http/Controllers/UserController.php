@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -51,7 +52,10 @@ class UserController extends Controller
         $user->firstname = $request->input('firstname');
         $user->lastname = $request->input('lastname');
         $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
         $user->save();
+        return redirect()->route('users.index')->with('status', 'Sccuessfully added new User');
+        
     }
 
     /**
@@ -68,12 +72,14 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return view('users.edit', [
+            'user'  => $user,
+        ]);
     }
 
     /**
@@ -85,7 +91,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate request
+        $user = User::findOrFail($id);
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->save();
+        if( $user->wasChanged() ) {
+            return redirect()->route('users.index')->with('status', 'Sccuessfully changed');
+        } else {
+            return redirect()->route('users.index');
+        }
+
     }
 
     /**
@@ -98,6 +115,6 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        return redirect()->route('users.index')->with('status', 'Der Benutzer wurde gelöscht.');
+        return redirect()->route('users.index')->with('status', 'Successfully deleted User');
     }
 }

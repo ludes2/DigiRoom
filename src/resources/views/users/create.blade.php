@@ -3,26 +3,21 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-2">
-            @include('layouts.components.side_nav')
-        </div>
-        <div class="col-md-8">
-            <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-                <div class="card bg-light">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-10">
-                                <h3>Users create</h3>
-                            </div>
-                        </div>
-                    </div> <!-- card-header -->
+                <div class="card bg-light border-0">
                     <div class="card-body">
                         @if (session('status'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('status') }}
                             </div>
-                        @endif                
+                        @endif       
+                        <div class="row">
+                            <div class="col-md-10">
+                                <h3>Create User</h3>
+                            </div>
+                        </div>         
                         <div class="form-group row">
                             <label for="firstname" class="col-md-4 col-form-label text-md-right">{{ __('Firstname') }}</label>
                             <div class="col-md-6 input-group">
@@ -92,9 +87,9 @@
                             </div>
                         </div>                
                     </div> <!-- card-body -->
-                    <div class="card-footer text-center">
+                    <div class="card-footer text-center bg-light">
                         <button type="submit" class="btn btn-primary mx-2">Create</button>
-                        <button type="reset" onclick="location.relaod()" class="btn btn-secondary mx-2">Cancel</button>
+                        <button type="reset" onclick="(function(){window.history.back();})()" class="btn btn-secondary mx-2">Cancel</button>
                     </div>
                 </div> <!-- card -->
             </form>

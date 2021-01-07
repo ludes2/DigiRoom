@@ -10,10 +10,10 @@
                 </div>
             @endif
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-6">
                     <h3>Devices</h3>
                 </div>
-                <div class="col-md-2 d-flex align-items-center justify-content-end">
+                <div class="col-6 d-flex align-items-center justify-content-end">
                     <a href="{{ route('devices.create') }}" role="button" class="btn btn-primary" title="Create new Device"><i class="fas fa-plus"></i>&nbspAdd Device</a>
                 </div>
             </div>
@@ -46,7 +46,6 @@
             </x-table>
             @endif
         </div>
-         <div class="card-footer bg-light"></div>
     </div> <!-- card -->
 </div>
 
@@ -62,14 +61,12 @@
 
 @section('scripts')
 <script>
-    $( document ).ready(function() {
-        $('#deleteDeviceModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget) // Button that triggered the modal
-            var id = button.data('id') // Extract info from data-* attributes
-            var url = '{{ route("devices.destroy", ":id") }}';
-            url = url.replace(':id', id);
-            $('#deleteDeviceForm').attr('action', url);
-        })
-    });
+    $('#deleteDeviceModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var id = button.data('id') // Extract info from data-* attributes
+        var url = '{{ route("devices.destroy", ":id") }}';
+        url = url.replace(':id', id);
+        $('#deleteDeviceForm').attr('action', url);
+    })
 </script>
 @endsection

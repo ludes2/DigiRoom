@@ -11,6 +11,20 @@
                     </select>
                 </div>
             </div>
+
+            <div class="form-group form-row">
+                <label for="from" class="text-md-left">From</label>
+                <div class="input-group" @click="changeFrom()">
+                    <input v-model="period.from" type="text" class="form-control date" id="from" name="from">
+                </div>
+            </div>
+
+            <div class="form-group form-row">
+                <label for="to" class="text-md-left">To</label>
+                <div class="input-group">
+                    <input  v-model="period.to" type="text" class="form-control date" id="to" name="to" @change="changeTo()">
+                </div>
+            </div>
         </div> <!-- card-body -->
     </div> <!-- card -->
 </div>
@@ -22,11 +36,16 @@ export default {
         return {
             rooms: [],
             room: {},
+            period: {
+                from: null,
+                to: null,
+            },
         }
     },
     mounted() {
         this.room = this.$store.state.room.name;
         this.fetchRooms();
+        this.period = this.$store.state.period;
     },
     methods: {
         fetchRooms(){
@@ -40,6 +59,12 @@ export default {
         },
         changeRoom(){
             this.$store.dispatch('setRoom', this.room);
+        },
+        changeFrom(){
+            this.$store.dispatch('setFrom', this.period.from);
+        },
+        changeTo(){
+            this.$store.dispatch('setTo', this.period.to);
         }
     }
 }

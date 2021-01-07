@@ -7,7 +7,7 @@
             <a class="nav-item nav-link" @click.prevent="setActive('temperature')" :class="{ active: isActive('temperature') }" id="temperature" href="#temperature">Temperature</a>
             <a class="nav-item nav-link" @click.prevent="setActive('humidity')" :class="{ active: isActive('humidity') }" id="humidity" href="#humidity">Humidity</a>
             <a class="nav-item nav-link" @click.prevent="setActive('lux')" :class="{ active: isActive('lux') }" id="lux" href="#lux">Lux</a>
-            <a class="nav-item nav-link" @click.prevent="setActive('all')" :class="{ active: isActive('all') }" id="all" href="#all">All</a>
+            <!--<a class="nav-item nav-link" @click.prevent="setActive('all')" :class="{ active: isActive('all') }" id="all" href="#all">All</a>-->
         </div>
     </nav>
 
@@ -29,7 +29,7 @@
         <div class="tab-pane fade" :class="{ 'active show': isActive('states') }" id="states">
            <state-chart-container v-if="isActive('states')"></state-chart-container>
         </div>
-        <div class="tab-pane fade" :class="{ 'active show': isActive('all') }" id="all">
+        <!--<div class="tab-pane fade" :class="{ 'active show': isActive('all') }" id="all">
             <div class="card-deck">
                 <presence-chart-container v-if="isActive('all')"></presence-chart-container>
                 <state-chart-container v-if="isActive('all')"></state-chart-container>
@@ -37,7 +37,7 @@
                 <humidity-chart-container v-if="isActive('all')"></humidity-chart-container>
                 <lux-chart-container v-if="isActive('all')"></lux-chart-container>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 </template>

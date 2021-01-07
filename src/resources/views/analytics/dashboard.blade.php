@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="">
-    <x-header icon="<span class='fas fa-tachometer-alt fa-fw mr-3'></span>" title='Dashboard'>
+    <x-header icon="<span class='fas fa-chart-line mr-3'></span>" title='Dashboard'>
     </x-header>
 
     <dashboard-component></dashboard-component>
